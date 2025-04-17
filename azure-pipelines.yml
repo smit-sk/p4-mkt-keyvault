@@ -18,6 +18,11 @@ steps:
     versionSpec: '3.x'
 
 - script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install Python dependencies'
+
+- script: |
     echo "Connecting string: $(P4SampleSecret)"
     python app.py
   displayName: 'Run app'
