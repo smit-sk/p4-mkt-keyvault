@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  - group: KeyVault-Secrets
+  - group: KV-Secrets-Group
 
 steps:
 - task: UsePythonVersion@0
