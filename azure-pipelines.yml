@@ -18,6 +18,6 @@ steps:
     versionSpec: '3.x'
 
 - script: |
-    echo "Secrets : $(P4SampleSecret)"
+    echo "Connecting string: $(P4SampleSecret)"
     python app.py
   displayName: 'Run app'
