@@ -22,7 +22,13 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install Python dependencies'
 
-- script: |
-    echo "Connecting string: $(P4SampleSecret)"
-    python app.py
-  displayName: 'Run app'
+- task: AzureRmWebAppDeployment@5
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure For Student'
+    appType: 'webAppLinux'
+    WebAppName: 'p4-webapp'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'PYTHON|3.11'
+    StartupCommand: 'python app.py'
+    DeploymentTypeLinux: 'oneDeploy'
