@@ -47,11 +47,11 @@ stages:
       displayName: "Install requirements"
 
     - task: AzureWebApp@1
-  displayName: 'Deploy Azure Web App : p4mkt-app'
-  inputs:
-    azureSubscription: $(azureServiceConnectionId)
-    appName: $(webAppName)
-    package: '$(Pipeline.Workspace)/drop/webapp.zip'
+      displayName: 'Deploy Azure Web App : p4mkt-app'
+      inputs:
+        azureSubscription: $(azureServiceConnectionId)
+        appName: $(webAppName)
+        package: '$(Pipeline.Workspace)/drop/webapp.zip'
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       displayName: 'Upload package'
