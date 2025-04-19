@@ -19,15 +19,15 @@ steps:
 
 - task: AzureKeyVault@2
   inputs:
-    azureSubscription: 'P4KeyVaultConnection'
+    azureSubscription: 'P4KeyVaultSV'
     KeyVaultName: 'P4KeyVault'
-    SecretsFilter: 'DbConnectionString'
+    SecretsFilter: 'P4SampleSecret'
     RunAsPreJob: true
   displayName: 'Fetch secrets from Key Vault'
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'P4KeyVaultConnection'
+    azureSubscription: 'P4KeyVaultSV'
     appType: 'webAppLinux'
     appName: 'p4-flask-app'
     package: '$(System.DefaultWorkingDirectory)'
