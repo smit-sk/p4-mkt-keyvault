@@ -1,0 +1,35 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+
+- task: AzureKeyVault@2
+  inputs:
+    azureSubscription: 'P4KeyVaultConnection'
+    KeyVaultName: 'P4KeyVault'
+    SecretsFilter: 'P4SampleSecret'
+    RunAsPreJob: true
+  displayName: 'Fetch secrets from Key Vault'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'P4KeyVaultConnection'
+    appType: 'webAppLinux'
+    appName: 'p4-flask-app'
+    package: '$(System.DefaultWorkingDirectory)'
+    runtimeStack: 'PYTHON|3.9'
+  displayName: 'Deploy to Azure Web App'
