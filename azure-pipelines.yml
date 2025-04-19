@@ -46,14 +46,12 @@ stages:
       workingDirectory: $(projectRoot)
       displayName: "Install requirements"
 
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
-      inputs:
-        rootFolderOrFile: '$(projectRoot)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
+    - task: AzureWebApp@1
+  displayName: 'Deploy Azure Web App : p4mkt-app'
+  inputs:
+    azureSubscription: $(azureServiceConnectionId)
+    appName: $(webAppName)
+    package: '$(Pipeline.Workspace)/drop/webapp.zip'
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       displayName: 'Upload package'
