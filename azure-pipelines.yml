@@ -13,13 +13,13 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- task: AzureKeyVault@2
-  inputs:
-    azureSubscription: 'P4KeyVaultSV'
-    KeyVaultName: 'P4KeyVault'
-    SecretsFilter: 'P4SampleSecret'
-    RunAsPreJob: true
-  displayName: 'Fetch secrets from Key Vault'
+# - task: AzureKeyVault@2
+#   inputs:
+#     azureSubscription: 'P4KeyVaultSV'
+#     KeyVaultName: 'P4KeyVault'
+#     SecretsFilter: 'P4SampleSecret'
+#     RunAsPreJob: true
+#   displayName: 'Fetch secrets from Key Vault'
 
 - task: AzureWebApp@1
   inputs:
