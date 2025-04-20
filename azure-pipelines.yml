@@ -31,5 +31,5 @@ steps:
     appType: 'webAppLinux'
     appName: 'p4-flask-app'
     package: '$(System.DefaultWorkingDirectory)'
-    runtimeStack: 'PYTHON|3.9'
+    runtimeStack: 'PYTHON|3.11'
   displayName: 'Deploy to Azure Web App'
