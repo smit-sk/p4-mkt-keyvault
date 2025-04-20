@@ -16,7 +16,7 @@ steps:
 - task: AzureKeyVault@2
   inputs:
     azureSubscription: 'P4KeyVaultSV'
-    KeyVaultName: 'P4KeyVault'
+    KeyVaultName: 'p4keyvault'
     SecretsFilter: 'P4SampleSecret'
     RunAsPreJob: true
   displayName: 'Fetch secrets from Key Vault'
