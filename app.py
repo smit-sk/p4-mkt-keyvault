@@ -13,7 +13,7 @@ def home():
     secret = client.get_secret("P4SampleSecret")
     return f"Secret: {secret.value}"
 
-@app.route("/")
+@app.route("/test")
 def test():
     return "App is running!"
 
